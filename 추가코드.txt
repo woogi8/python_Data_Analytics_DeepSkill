@@ -1,0 +1,40 @@
+# 결과물을 엑셀 파일로 저장하기
+sales[sales["product"] == "범핑"].to_excel("data.xlsx")
+
+# 복수 조건문
+sales[(sales["price"] > 100) & (sales["quantity"] > 50)]
+
+# 간단한 사용자 정의 함수
+def my_function(x):
+    result = x + 1
+    return result
+my_function(1)
+
+# 엑셀 파일로 저장하기
+df.to_excel("주가엑셀파일.xlsx")
+
+
+## EDA
+# [TASK] 2.2 평균 layer_thickness_nm이 가장 낮은 material_type은?
+
+# 프롬프트: "data 라는 변수에서 평균 layer_thickness_nm이 가장 낮은 material_type을 확인하려면?"
+
+# Assuming the data is already loaded into a variable called "data"
+# Calculate the average layer_thickness_nm by material_type
+average_thickness_by_material = data.groupby("material_type")["layer_thickness_nm"].mean()
+
+# Find the material_type with the lowest average layer_thickness_nm
+lowest_thickness_material = average_thickness_by_material.idxmin()
+
+# Print the result
+print(f"평균 layer_thickness_nm이 가장 낮은 material_type은: {lowest_thickness_material}")
+
+
+# [TASK] 2.2 평균 layer_thickness_nm이 가장 낮은 material_type은?
+data.groupby("material_type")["layer_thickness_nm"].mean().idxmin()
+
+# [TASK] 2.3 평균 deposition_rate가 가장 높은 etching_voltage는?
+data.groupby("etching_voltage")["deposition_rate"].mean().idxmax()
+
+# [TASK] 2.4 humidity_level에 따른 product_defect 비율이 가장 높은 범주는?
+data.groupby("humidity_level")["product_defect"].mean().idxmax()
